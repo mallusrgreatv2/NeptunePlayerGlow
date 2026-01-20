@@ -1,0 +1,5 @@
+name: NeptunePlayerGlow
+version: '1.0.0'
+main: me.mallusrgreat.neptunePlayerGlow.NeptunePlayerGlow
+api-version: '1.21'
+depend: [Neptune]
