@@ -2,7 +2,6 @@ package me.mallusrgreat.neptunePlayerGlow;
 
 import dev.lrxh.api.events.MatchEndEvent;
 import dev.lrxh.api.events.MatchStartEvent;
-import dev.lrxh.api.match.IFffaFightMatch;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -26,7 +25,6 @@ public final class NeptunePlayerGlow extends JavaPlugin implements Listener {
         red.color(NamedTextColor.RED);
         Team blue = scoreboard.registerNewTeam("Blue");
         blue.color(NamedTextColor.BLUE);
-        if (match instanceof IFffaFightMatch) return;
         match.getParticipants().forEach(participant -> {
             Player player = participant.getProfile().getPlayer();
             if (participant.getColor().getContentColor().equals(Color.RED)) red.addPlayer(player);
