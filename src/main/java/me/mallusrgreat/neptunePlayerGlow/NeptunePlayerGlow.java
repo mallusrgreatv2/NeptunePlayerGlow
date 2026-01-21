@@ -2,12 +2,14 @@ package me.mallusrgreat.neptunePlayerGlow;
 
 import dev.lrxh.api.events.MatchEndEvent;
 import dev.lrxh.api.events.MatchStartEvent;
+import dev.lrxh.api.events.PlayerLeaveEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
@@ -25,6 +27,12 @@ public final class NeptunePlayerGlow extends JavaPlugin implements Listener {
 
         red.color(NamedTextColor.RED);
         blue.color(NamedTextColor.BLUE);
+    }
+
+    @Override
+    public void onDisable() {
+        red.unregister();
+        blue.unregister();
     }
 
     @EventHandler
@@ -47,5 +55,12 @@ public final class NeptunePlayerGlow extends JavaPlugin implements Listener {
             red.removePlayer(player);
             blue.removePlayer(player);
         });
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent e) {
+        e.getPlayer().setGlowing(false);
+        red.removePlayer(e.getPlayer());
+        blue.removePlayer(e.getPlayer());
     }
 }
